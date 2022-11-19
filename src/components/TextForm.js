@@ -5,14 +5,17 @@ const TextForm = (props) => {
   const [text, setText] = useState("");
   const handleOnClick = () => {
     setText(text.toUpperCase());
+    props.showAlert("converting to uppercase Successful","success")
   };
 
   const lowercases = () => {
     setText(text.toLowerCase());
+    props.showAlert("converting to LowerCase Successful","success")
   };
 
   const Clear = () => {
     setText("");
+    props.showAlert("Text Cleared","success")
   };
 
   const TextCopy = () => {
@@ -20,15 +23,18 @@ const TextForm = (props) => {
     textD.select();
     // textD.setSelectionRange(0,99999);
     navigator.clipboard.writeText(textD.value);
+    props.showAlert("Text Copied successfully","success")
   };
   const RemoveExtraSpace=()=>{
     let newText= text.split(/[ ]+/);
     setText(newText.join(" "))
+    props.showAlert("Extra space has been removed","success")
   }
   const Speek = () => {
     let msg = new SpeechSynthesisUtterance();
     msg.text = text;
     window.speechSynthesis.speak(msg);
+    props.showAlert("Voice speech ready ","success")
   };
 
   const handleOnchage = (e) => {
@@ -47,22 +53,22 @@ const TextForm = (props) => {
           value={text}
         ></textarea>
       </div>
-      <button className="btn btn-primary mx-1" onClick={handleOnClick}>
+      <button className="btn btn-primary mx-1 my-3" onClick={handleOnClick}>
         UpperCase
       </button>
-      <button className="btn btn-primary mx-1" onClick={lowercases}>
+      <button className="btn btn-primary mx-1 my-3" onClick={lowercases}>
         LowerCase
       </button>
-      <button className="btn btn-primary mx-1" onClick={Clear}>
+      <button className="btn btn-primary mx-1 my-3" onClick={Clear}>
         Clear
       </button>
-      <button className="btn btn-primary mx-1" onClick={Speek}>
+      <button className="btn btn-primary mx-1 my-3" onClick={Speek}>
         Speak
       </button>
-      <button className="btn btn-primary mx-1" onClick={TextCopy}>
+      <button className="btn btn-primary mx-1 my-3" onClick={TextCopy}>
         Copy Text
       </button>
-      <button className="btn btn-primary mx-1" onClick={RemoveExtraSpace}>
+      <button className="btn btn-primary mx-1 my-3" onClick={RemoveExtraSpace}>
         Extra Space
       </button>
       <div className="container my-2">
